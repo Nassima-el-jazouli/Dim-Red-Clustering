@@ -2,6 +2,8 @@ from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics.cluster import normalized_mutual_info_score, adjusted_rand_score
 from sentence_transformers import SentenceTransformer
 import numpy as np
+from sklearn.manifold import TSNE
+from sklearn.cluster import KMeans
 
 
 def dim_red(mat, p, method):
@@ -19,8 +21,9 @@ def dim_red(mat, p, method):
     if method=='ACP':
         red_mat = mat[:,:p]
         
-    elif method=='AFC':
-        red_mat = mat[:,:p]
+    elif method=='TSNE':
+        reducer = TSNE(n_components=p)
+        red_mat = reducer.fit_transform(mat)
         
     elif method=='UMAP':
         red_mat = mat[:,:p]
@@ -43,8 +46,8 @@ def clust(mat, k):
     ------
         pred : list of predicted labels
     '''
-    
-    pred = np.random.randint(k, size=len(corpus))
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    pred = kmeans.fit_predict(mat)
     
     return pred
 
@@ -59,7 +62,7 @@ model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 embeddings = model.encode(corpus)
 
 # Perform dimensionality reduction and clustering for each method
-methods = ['ACP', 'AFC', 'UMAP']
+methods = ['ACP', 'TSNE', 'UMAP']
 for method in methods:
     # Perform dimensionality reduction
     red_emb = dim_red(embeddings, 20, method)
