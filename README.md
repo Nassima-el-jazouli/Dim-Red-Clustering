@@ -10,4 +10,17 @@ git clone https://github.com/Nassima-el-jazouli/Dim-Red-Clustering.git
 
 ## Etape 3 : Développer les notebooks, chacun avec sa propre méthode.
 On avait 3 méthodes de réduction de dimension : PCA, UMAP, T-SNE.
-On créé un dossier appelé : experiments
+On créé un dossier appelé : experiments et chaque collaborateur créé une nouvelle branche et pousse son code et modifie le main.py
+
+## Etape 4 : Chaque collaborateur ouvre une pull request pour merger ces branches avec la branche master
+
+## Etape 5 : Cloner le projet chez une seule machine
+git clone https://github.com/Nassima-el-jazouli/Dim-Red-Clustering.git
+
+## Etape 6 : Ajouter le file requirements.txt et mettre les packages dont on a besoin
+
+## Etape 7 : Créer le Dockerfile et le remplir
+
+## Etape 8 : Builder l'image docker build -t my-image .
+
+## Etape 9 : Runner le contenaire avec un volume docker run -v "C:/Users/nessm/OneDrive/Bureau/Projet/Dim-Red-Clustering/main.py":/app/main.py my-image
