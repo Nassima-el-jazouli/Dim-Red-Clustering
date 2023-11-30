@@ -21,7 +21,7 @@ def dim_red(mat, p, method):
         red_mat : NxP list such that p<<m
     '''
     if method=='ACP':
-        pca = PCA(n_components=p, svd_solver=method)
+        pca = PCA(n_components=p, svd_solver='auto')
         red_mat = pca.fit_transform(mat)
         
     elif method=='TSNE':
